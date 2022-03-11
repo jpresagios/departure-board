@@ -29,13 +29,14 @@ export const StyledTableCell = withStyles({
  * @param props Contains a prediction from MTBA API
  * @returns
  */
-function BoardEntry(props: { data: IPrediction }) {
-  const { data } = props;
+function BoardEntry(props: { data: IPrediction, isArrival: boolean }) {
+  const { data, isArrival } = props;
   const [destinationName, setDestinationName] = useState('');
 
   const trainNumber = getTrainNumber(data);
   const trainTrackNumber = getTrainTrackNumber(data);
   const status = getTrainStatus(data);
+  const trainTime = getTrainTime(data, isArrival);
 
   const {
     relationships: {
@@ -54,7 +55,7 @@ function BoardEntry(props: { data: IPrediction }) {
   return (
     <TableRow>
       <StyledTableCell align="left">{getCarrier()}</StyledTableCell>
-      <StyledTableCell align="right">{getTrainTime(data)}</StyledTableCell>
+      <StyledTableCell align="right">{trainTime}</StyledTableCell>
       <StyledTableCell align="right">{destinationName}</StyledTableCell>
       <StyledTableCell align="right">{trainNumber}</StyledTableCell>
       <StyledTableCell align="right">{trainTrackNumber}</StyledTableCell>
