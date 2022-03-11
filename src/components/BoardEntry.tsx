@@ -1,7 +1,9 @@
 import React, { useEffect, useState } from 'react';
 import TableRow from '@material-ui/core/TableRow';
+import { withStyles } from '@material-ui/core/styles';
 import TableCell from '@material-ui/core/TableCell';
 import { IPrediction } from '../dataSource/IPredition';
+
 import {
   getCarrier,
   getDestinationName,
@@ -10,6 +12,17 @@ import {
   getTrainTime,
   getTrainTrackNumber,
 } from '../utils/boardData';
+
+export const StyledTableCell = withStyles({
+  body: {
+    border: 'none',
+    textTransform: 'uppercase',
+    fontWeight: 'bold',
+    fontSize: 20,
+    color: '#FFFD5A',
+    backgroundColor: '#121312'
+  },
+})(TableCell);
 
 /**
  * This component represent an entry on the board (Departure or Arrival)
@@ -40,12 +53,12 @@ function BoardEntry(props: { data: IPrediction }) {
 
   return (
     <TableRow>
-      <TableCell align="right">{getCarrier()}</TableCell>
-      <TableCell align="right">{getTrainTime(data)}</TableCell>
-      <TableCell align="right">{destinationName}</TableCell>
-      <TableCell align="right">{trainNumber}</TableCell>
-      <TableCell align="right">{trainTrackNumber}</TableCell>
-      <TableCell align="right">{status}</TableCell>
+      <StyledTableCell align="right">{getCarrier()}</StyledTableCell>
+      <StyledTableCell align="right">{getTrainTime(data)}</StyledTableCell>
+      <StyledTableCell align="right">{destinationName}</StyledTableCell>
+      <StyledTableCell align="right">{trainNumber}</StyledTableCell>
+      <StyledTableCell align="right">{trainTrackNumber}</StyledTableCell>
+      <StyledTableCell align="right">{status}</StyledTableCell>
     </TableRow>
   );
 }
