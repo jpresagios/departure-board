@@ -86,7 +86,7 @@ function Board(props: { data: IPrediction[] }) {
         </TableHead>
         <TableBody>
           {departures.map((departure: IPrediction) => (
-            <BoardEntry key={departure.id} data={departure} />
+            <BoardEntry key={departure.id} data={departure} isArrival={false} />
           ))}
 
           <TableRow>
@@ -95,7 +95,7 @@ function Board(props: { data: IPrediction[] }) {
             </StyledTableCell>
           </TableRow>
           {arrivals.map((arrival: IPrediction) => (
-            <BoardEntry key={arrival.id} data={arrival} />
+            <BoardEntry key={arrival.id} data={arrival} isArrival />
           ))}
         </TableBody>
       </Table>
