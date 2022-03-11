@@ -5,7 +5,7 @@ const fakePredictions: IPrediction[] = [
     attributes: {
       arrival_time: null,
       departure_time: '2022-03-11T18:53:48-05:00',
-      status: null
+      status: 'ALL ABOARD'
     },
     id: 'prediction-50347197-NoGLX2-70206-20',
     relationships: {
