@@ -46,6 +46,7 @@
     ]
   },
   "devDependencies": {
+    "@types/material-ui": "^0.21.12",
     "@typescript-eslint/eslint-plugin": "^5.14.0",
     "@typescript-eslint/parser": "^5.14.0",
     "eslint": "^8.10.0",
