@@ -8,14 +8,26 @@ import apiKey from '../enviroment';
 
 const getCarrier = () => 'MTBA';
 
-const getTrainTime = (prediction: IPrediction) => {
-  const {
-    // eslint-disable-next-line @typescript-eslint/naming-convention
-    attributes: { departure_time }
-  } = prediction;
+const getTrainTime = (prediction: IPrediction, isArrival: boolean) => {
+  let time = null;
 
-  const realHour: number = new Date(departure_time).getHours();
-  const realMinutes: number = new Date(departure_time).getMinutes();
+  if (isArrival) {
+    const {
+      // eslint-disable-next-line @typescript-eslint/naming-convention
+      attributes: { arrival_time }
+    } = prediction;
+    time = arrival_time;
+  } else {
+    const {
+      // eslint-disable-next-line @typescript-eslint/naming-convention
+      attributes: { departure_time }
+    } = prediction;
+
+    time = departure_time;
+  }
+
+  const realHour: number = new Date(time!).getHours();
+  const realMinutes: number = new Date(time!).getMinutes();
   let suffix = 'AM';
 
   let displayHour: string = `${realHour}`;
