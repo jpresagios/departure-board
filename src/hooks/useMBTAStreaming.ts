@@ -1,6 +1,8 @@
-import { fetchEventSource } from "@microsoft/fetch-event-source";
-import { useEffect, useReducer } from "react";
-import { IPrediction } from "../dataSource/IPredition";
+/* eslint-disable no-case-declarations */
+import { fetchEventSource } from '@microsoft/fetch-event-source';
+import { useEffect, useReducer } from 'react';
+import { IPrediction } from '../dataSource/IPredition';
+import apiKey from '../enviroment';
 
 interface EventAction {
   type: string;
@@ -9,22 +11,22 @@ interface EventAction {
 
 const useMBTAStreaming = () => {
   const [data, dispatch] = useReducer(
-    (state: IPrediction[] = [], action: EventAction) => {
+    (state: IPrediction[], action: EventAction) => {
       const { type, payload } = action;
 
       switch (type) {
-        case "reset":
+        case 'reset':
           return payload as IPrediction[];
-        case "add":
+        case 'add':
           return [...state, payload as IPrediction];
-        case "remove":
+        case 'remove':
           const removeData = payload as { id: string };
           return state.filter((pred) => pred.id !== removeData.id);
-        case "update":
+        case 'update':
           const predictionToUpdate = payload as IPrediction;
           return [
             ...state.filter((pred) => pred.id !== predictionToUpdate.id),
-            predictionToUpdate,
+            predictionToUpdate
           ];
         default:
           return state;
@@ -35,11 +37,11 @@ const useMBTAStreaming = () => {
 
   useEffect(() => {
     fetchEventSource(
-      "https://api-v3.mbta.com/predictions/?api_key=8bc7cddc9a404daf8a3d40e098a9f980&stop=place-north",
+      `https://api-v3.mbta.com/predictions/?api_key=${apiKey}&stop=place-north`,
       {
         onmessage(ev) {
           dispatch({ type: ev.event, payload: JSON.parse(ev.data) });
-        },
+        }
       }
     );
   }, []);

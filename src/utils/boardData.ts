@@ -4,6 +4,7 @@
 
 import axios from 'axios';
 import { IPrediction } from '../dataSource/IPredition';
+import apiKey from '../enviroment';
 
 const getCarrier = () => 'MTBA';
 
@@ -35,7 +36,7 @@ const getTrainTime = (prediction: IPrediction) => {
 
 const getDestinationName = async (tripId: string): Promise<string> => {
   const tripData = await axios.get(
-    `https://api-v3.mbta.com/trips/${tripId}?api_key=8bc7cddc9a404daf8a3d40e098a9f980`
+    `https://api-v3.mbta.com/trips/${tripId}?api_key=${apiKey}`
   );
 
   const {
