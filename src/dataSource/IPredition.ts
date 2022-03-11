@@ -1,5 +1,5 @@
 export interface IAttribute {
-  arrivalTime: string;
+  arrival_time: string;
   departure_time: string;
   status: string;
 }
