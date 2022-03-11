@@ -53,7 +53,7 @@ function BoardEntry(props: { data: IPrediction }) {
 
   return (
     <TableRow>
-      <StyledTableCell align="right">{getCarrier()}</StyledTableCell>
+      <StyledTableCell align="left">{getCarrier()}</StyledTableCell>
       <StyledTableCell align="right">{getTrainTime(data)}</StyledTableCell>
       <StyledTableCell align="right">{destinationName}</StyledTableCell>
       <StyledTableCell align="right">{trainNumber}</StyledTableCell>

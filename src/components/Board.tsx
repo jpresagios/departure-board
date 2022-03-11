@@ -1,6 +1,4 @@
-import React, {
-  MutableRefObject, useEffect, useRef, useState
-} from 'react';
+import React, { useEffect, useState } from 'react';
 import { makeStyles, withStyles } from '@material-ui/core/styles';
 import Table from '@material-ui/core/Table';
 import TableBody from '@material-ui/core/TableBody';
@@ -9,7 +7,6 @@ import TableContainer from '@material-ui/core/TableContainer';
 import TableHead from '@material-ui/core/TableHead';
 import TableRow from '@material-ui/core/TableRow';
 import Paper from '@material-ui/core/Paper';
-import { Button } from '@material-ui/core';
 import { IPrediction } from '../dataSource/IPredition';
 import BoardEntry from './BoardEntry';
 
@@ -28,9 +25,7 @@ export const StyledTableCell = withStyles((theme) => ({
 function Board(props: { data: IPrediction[] }) {
   const [departures, setDepartures] = useState([] as IPrediction[]);
   const [arrivals, setArrivals] = useState([] as IPrediction[]);
-  const arrivalsRef = useRef() as MutableRefObject<HTMLDivElement>;
   const { data } = props;
-  const executeScrollToArrivals = () => arrivalsRef.current.scrollIntoView();
 
   useEffect(() => {
     const departuresFilter = data.filter(
@@ -90,16 +85,15 @@ function Board(props: { data: IPrediction[] }) {
           </TableRow>
         </TableHead>
         <TableBody>
-          <Button onClick={executeScrollToArrivals} variant="contained">
-            Click to view trains arriving
-          </Button>
           {departures.map((departure: IPrediction) => (
             <BoardEntry key={departure.id} data={departure} />
           ))}
 
-          <StyledTableCell>
-            <h1 ref={arrivalsRef}>Arrivals</h1>
-          </StyledTableCell>
+          <TableRow>
+            <StyledTableCell>
+              <h1>Arrivals</h1>
+            </StyledTableCell>
+          </TableRow>
           {arrivals.map((arrival: IPrediction) => (
             <BoardEntry key={arrival.id} data={arrival} />
           ))}
