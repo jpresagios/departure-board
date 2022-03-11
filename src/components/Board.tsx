@@ -33,8 +33,8 @@ function Board(props: { data: IPrediction[] }) {
     );
 
     const sortedDepartures = departuresFilter.sort(
-      (a: IPrediction, b: IPrediction) => new Date(a.attributes.departure_time).getTime()
-        - new Date(b.attributes.departure_time).getTime()
+      (a: IPrediction, b: IPrediction) => new Date(a.attributes.departure_time!).getTime()
+        - new Date(b.attributes.departure_time!).getTime()
     );
 
     setDepartures(sortedDepartures);
@@ -44,8 +44,8 @@ function Board(props: { data: IPrediction[] }) {
     );
 
     const sortedArrivals = arrivasFilter.sort(
-      (a: IPrediction, b: IPrediction) => new Date(a.attributes.arrival_time).getTime()
-        - new Date(b.attributes.arrival_time).getTime()
+      (a: IPrediction, b: IPrediction) => new Date(a.attributes.arrival_time!).getTime()
+        - new Date(b.attributes.arrival_time!).getTime()
     );
 
     setArrivals(sortedArrivals);
