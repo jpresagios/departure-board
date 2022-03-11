@@ -1,6 +1,6 @@
 export interface IAttribute {
   arrivalTime: string;
-  departureTime: string;
+  departure_time: string;
   status: string;
 }
 
@@ -13,8 +13,13 @@ export interface IRelationship {
   route: { data: IData };
   stop: { data: IData };
   trip: { data: IData };
+  vehicle: { data: IData };
 }
 
+/**
+ * This interface contain minimal fields from data API definition
+ * /predictions MTBA needed to compute the Board
+ */
 export interface IPrediction {
   id: string;
   attributes: IAttribute;
