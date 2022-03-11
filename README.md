@@ -22,6 +22,12 @@ How to run app
 npm run start
 ```
 
+How to run tests
+
+```
+npm run test
+```
+
 Enviroment
 
 To provide your own api key mtba please added to .env
