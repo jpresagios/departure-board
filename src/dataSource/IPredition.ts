@@ -1,7 +1,7 @@
 export interface IAttribute {
-  arrival_time: string;
-  departure_time: string;
-  status: string;
+  arrival_time: string | null;
+  departure_time: string | null;
+  status: string | null;
 }
 
 interface IData {
