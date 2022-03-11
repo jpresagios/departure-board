@@ -16,6 +16,8 @@
   "plugins": ["react", "@typescript-eslint", "import"],
   "rules": {
     "quotes": [2, "single", { "avoidEscape": true }],
+    "comma-dangle": "off",
+    "@typescript-eslint/comma-dangle": "off",
     "import/no-extraneous-dependencies": ["error", { "devDependencies": true }],
     "no-underscore-dangle": ["error", { "allow": ["_id"] }],
     "no-param-reassign": [

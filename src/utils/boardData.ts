@@ -2,31 +2,30 @@
  * This files contains computed central logic from MBTA API data to the Board
  */
 
-import { IPrediction } from "../dataSource/IPredition";
-import axios from "axios";
+import axios from 'axios';
+import { IPrediction } from '../dataSource/IPredition';
 
-const getCarrier = (prediction: IPrediction) => {
-  return "MTBA";
-};
+const getCarrier = () => 'MTBA';
 
 const getTrainTime = (prediction: IPrediction) => {
   const {
-    attributes: { departure_time },
+    // eslint-disable-next-line @typescript-eslint/naming-convention
+    attributes: { departure_time }
   } = prediction;
 
   const realHour: number = new Date(departure_time).getHours();
   const realMinutes: number = new Date(departure_time).getMinutes();
-  let suffix = "AM";
+  let suffix = 'AM';
 
   let displayHour: string = `${realHour}`;
   let displayMinutes: string = `${realMinutes}`;
 
   if (realHour > 11) {
     displayHour = `${realHour - 12}`;
-    suffix = "PM";
+    suffix = 'PM';
   }
   if (realHour === 0) {
-    displayHour = "12";
+    displayHour = '12';
   }
   if (realMinutes < 10) {
     displayMinutes = `0${realMinutes}`;
@@ -41,8 +40,8 @@ const getDestinationName = async (tripId: string): Promise<string> => {
 
   const {
     data: {
-      attributes: { headsign },
-    },
+      attributes: { headsign }
+    }
   } = tripData.data;
 
   return headsign;
@@ -50,25 +49,25 @@ const getDestinationName = async (tripId: string): Promise<string> => {
 
 const getTrainNumber = (prediction: IPrediction) => {
   const {
-    relationships: { vehicle },
+    relationships: { vehicle }
   } = prediction;
 
-  const vehicleData = vehicle.data.id.split("-");
+  const vehicleData = vehicle.data.id.split('-');
   return vehicleData.length > 1 ? vehicleData[1] : vehicleData;
 };
 
 const getTrainTrackNumber = (prediction: IPrediction) => {
   const {
-    relationships: { stop },
+    relationships: { stop }
   } = prediction;
 
-  const trackData = stop.data.id.split("-");
-  return trackData.length > 1 ? stop.data.id[1] : "TBD";
+  const trackData = stop.data.id.split('-');
+  return trackData.length > 1 ? stop.data.id[1] : 'TBD';
 };
 
 const getTrainStatus = (prediction: IPrediction) => {
   const {
-    attributes: { status },
+    attributes: { status }
   } = prediction;
   return status;
 };
@@ -79,5 +78,5 @@ export {
   getDestinationName,
   getTrainNumber,
   getTrainTrackNumber,
-  getTrainStatus,
+  getTrainStatus
 };

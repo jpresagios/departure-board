@@ -11,19 +11,23 @@ import { IPrediction } from '../dataSource/IPredition';
 import BoardEntry from './BoardEntry';
 
 function Board(props: { data: IPrediction[] }) {
-  const [departures, setDepartures] = useState([] as IPrediction[])
+  const [departures, setDepartures] = useState([] as IPrediction[]);
   const { data } = props;
 
   useEffect(() => {
-    const departuresFilter = data.filter(pred => pred.attributes.departure_time !== null);
+    const departuresFilter = data.filter(
+      (pred) => pred.attributes.departure_time !== null,
+    );
 
-    const sortedDepartures = departuresFilter.sort((a: IPrediction, b: IPrediction) => {
-      return new Date(a.attributes.departure_time).getTime() - new Date(b.attributes.departure_time).getTime();
-    });
+    const sortedDepartures = departuresFilter.sort(
+      (a: IPrediction, b: IPrediction) => (
+        new Date(a.attributes.departure_time).getTime()
+        - new Date(b.attributes.departure_time).getTime()
+      ),
+    );
 
     setDepartures(sortedDepartures);
   }, [data]);
-
 
   const useStyles = makeStyles({
     table: {
@@ -35,15 +39,27 @@ function Board(props: { data: IPrediction[] }) {
 
   return (
     <TableContainer component={Paper}>
-      <Table className={classes.table} aria-label="simple table">
+      <Table className={classes.table} aria-label="Departure/Arrivals Board">
         <TableHead>
           <TableRow>
-            <TableCell><b>Carrier</b></TableCell>
-            <TableCell align="right"><b>Time</b></TableCell>
-            <TableCell align="right"><b>Destination</b></TableCell>
-            <TableCell align="right"><b>Train #</b></TableCell>
-            <TableCell align="right"><b>Track #</b></TableCell>
-            <TableCell align="right"><b>Status</b></TableCell>
+            <TableCell>
+              <b>Carrier</b>
+            </TableCell>
+            <TableCell align="right">
+              <b>Time</b>
+            </TableCell>
+            <TableCell align="right">
+              <b>Destination</b>
+            </TableCell>
+            <TableCell align="right">
+              <b>Train #</b>
+            </TableCell>
+            <TableCell align="right">
+              <b>Track #</b>
+            </TableCell>
+            <TableCell align="right">
+              <b>Status</b>
+            </TableCell>
           </TableRow>
         </TableHead>
         <TableBody>
@@ -55,6 +71,5 @@ function Board(props: { data: IPrediction[] }) {
     </TableContainer>
   );
 }
-
 
 export default Board;
