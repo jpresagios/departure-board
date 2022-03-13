@@ -5,7 +5,7 @@ import axios from 'axios';
 import pretty from 'pretty';
 import Board from '../components/Board';
 import fakePredictions, { trips } from './fakePredictions';
-import { getTrainNumber, getTrainTime } from '../utils/boardData';
+import { getTrainNumber } from '../utils/boardData';
 
 beforeEach(() => {
   jest.clearAllMocks();
@@ -38,7 +38,7 @@ test('Trains data show up in the Board', async () => {
   }
 });
 
-test('Entry shpow up in departure section', async () => {
+test('Trains arriving at South Station are displayed in the departures area in the UI', async () => {
   // eslint-disable-next-line max-len
   (axios.get as jest.Mock).mockImplementation(() => Promise.resolve({ data: { ...trips } }));
 
@@ -52,7 +52,7 @@ test('Entry shpow up in departure section', async () => {
   expect(departuresElements[0].innerHTML).toContain(entryDeparture.attributes.status);
 });
 
-test('Entry shpow up in arrival section', async () => {
+test('Trains leaving the south station are displayed in the departures area in the UI', async () => {
   // eslint-disable-next-line max-len
   (axios.get as jest.Mock).mockImplementation(() => Promise.resolve({ data: { ...trips } }));
 
