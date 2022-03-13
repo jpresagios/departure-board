@@ -23,3 +23,8 @@ export interface IPrediction {
   relationships: IRelationship;
   destination?: string;
 }
+
+export interface ITrainsBoard {
+  departuresData: IPrediction[];
+  arrivalsData: IPrediction[];
+}
