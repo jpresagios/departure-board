@@ -2,6 +2,7 @@ export interface IAttribute {
   arrival_time: string | null;
   departure_time: string | null;
   status: string | null;
+  stop_sequence: number;
 }
 
 interface IData {
@@ -16,12 +17,9 @@ export interface IRelationship {
   vehicle: { data: IData };
 }
 
-/**
- * This interface contain minimal fields from data API definition
- * /predictions MTBA needed to compute the Board
- */
 export interface IPrediction {
   id: string;
   attributes: IAttribute;
   relationships: IRelationship;
+  destination?: string;
 }
