@@ -5,6 +5,7 @@ import axios from 'axios';
 import pretty from 'pretty';
 import Board from '../components/Board';
 import fakePredictions, { trips } from './fakePredictions';
+import { getTrainNumber, getTrainTime } from '../utils/boardData';
 
 beforeEach(() => {
   jest.clearAllMocks();
@@ -22,8 +23,7 @@ test('Board renders correctly', async () => {
   expect(pretty(el.innerHTML)).toMatchSnapshot();
 });
 
-test('Board display props', async () => {
-  const prediction = fakePredictions[0];
+test('Trains data show up in the Board', async () => {
   // eslint-disable-next-line max-len
   (axios.get as jest.Mock).mockImplementation(() => Promise.resolve({ data: { ...trips } }));
 
@@ -31,7 +31,11 @@ test('Board display props', async () => {
   await act(async () => {
     ReactDOM.render(<Board data={fakePredictions} />, el);
   });
-  expect(el.innerHTML).toContain(prediction.attributes.status!);
+
+  for (let i = 0; i < fakePredictions.length; i += 1) {
+    expect(el.innerHTML).toContain(fakePredictions[i].attributes.status!);
+    expect(el.innerHTML).toContain(getTrainNumber(fakePredictions[i]));
+  }
 });
 
 test('Entry shpow up in departure section', async () => {
