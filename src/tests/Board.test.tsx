@@ -38,7 +38,7 @@ test('Trains data show up in the Board', async () => {
   }
 });
 
-test('Trains arriving at South Station are displayed in the departures area in the UI', async () => {
+test('Trains leaving the south station are displayed in the departures area in the UI', async () => {
   // eslint-disable-next-line max-len
   (axios.get as jest.Mock).mockImplementation(() => Promise.resolve({ data: { ...trips } }));
 
@@ -52,7 +52,7 @@ test('Trains arriving at South Station are displayed in the departures area in t
   expect(departuresElements[0].innerHTML).toContain(entryDeparture.attributes.status);
 });
 
-test('Trains leaving the south station are displayed in the departures area in the UI', async () => {
+test('Trains arriving at the south station are displayed in the arrivals area of the user interface', async () => {
   // eslint-disable-next-line max-len
   (axios.get as jest.Mock).mockImplementation(() => Promise.resolve({ data: { ...trips } }));
 
