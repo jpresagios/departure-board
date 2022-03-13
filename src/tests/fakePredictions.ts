@@ -5,7 +5,8 @@ const fakePredictions: IPrediction[] = [
     attributes: {
       arrival_time: null,
       departure_time: '2022-03-11T18:53:48-05:00',
-      status: 'ALL ABOARD'
+      status: 'ALL ABOARD',
+      stop_sequence: 1
     },
     id: 'prediction-50347197-NoGLX2-70206-20',
     relationships: {
@@ -39,7 +40,8 @@ const fakePredictions: IPrediction[] = [
     attributes: {
       arrival_time: null,
       departure_time: '2022-03-11T18:12:15-05:00',
-      status: null
+      status: null,
+      stop_sequence: 2
     },
     id: 'prediction-50347201-NoGLX2-70206-20',
     relationships: {
@@ -73,7 +75,8 @@ const fakePredictions: IPrediction[] = [
     attributes: {
       arrival_time: null,
       departure_time: '2022-03-11T18:40:32-05:00',
-      status: null
+      status: null,
+      stop_sequence: 1
     },
     id: 'prediction-50347215-NoGLX2-70206-20',
     relationships: {
@@ -107,7 +110,8 @@ const fakePredictions: IPrediction[] = [
     attributes: {
       arrival_time: null,
       departure_time: '2022-03-11T18:26:21-05:00',
-      status: null
+      status: null,
+      stop_sequence: 0
     },
     id: 'prediction-50347216-NoGLX2-70206-20',
     relationships: {
@@ -141,7 +145,8 @@ const fakePredictions: IPrediction[] = [
     attributes: {
       arrival_time: null,
       departure_time: '2022-03-11T18:50:33-05:00',
-      status: null
+      status: null,
+      stop_sequence: 1
     },
     id: 'prediction-50347219-NoGLX2-70206-20',
     relationships: {
