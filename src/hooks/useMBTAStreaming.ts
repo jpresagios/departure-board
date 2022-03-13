@@ -37,7 +37,7 @@ const useMBTAStreaming = () => {
 
   useEffect(() => {
     fetchEventSource(
-      `https://api-v3.mbta.com/predictions/?api_key=${apiKey}&stop=place-north`,
+      `https://api-v3.mbta.com/predictions/?api_key=${apiKey}&stop=place-sstat`,
       {
         onmessage(ev) {
           dispatch({ type: ev.event, payload: JSON.parse(ev.data) });
