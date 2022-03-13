@@ -1,12 +1,12 @@
-import React, { useEffect, useState } from 'react';
+import React, { memo } from 'react';
 import TableRow from '@material-ui/core/TableRow';
 import { withStyles } from '@material-ui/core/styles';
 import TableCell from '@material-ui/core/TableCell';
+import isEqual from 'react-fast-compare';
 import { IPrediction } from '../dataSource/IPredition';
 
 import {
   getCarrier,
-  getDestinationName,
   getTrainNumber,
   getTrainStatus,
   getTrainTime,
@@ -31,32 +31,17 @@ export const StyledTableCell = withStyles({
  */
 function BoardEntry(props: { data: IPrediction, isArrival: boolean }) {
   const { data, isArrival } = props;
-  const [destinationName, setDestinationName] = useState('');
 
   const trainNumber = getTrainNumber(data);
   const trainTrackNumber = getTrainTrackNumber(data);
   const status = getTrainStatus(data);
   const trainTime = getTrainTime(data, isArrival);
 
-  const {
-    relationships: {
-      trip: {
-        data: { id },
-      },
-    },
-  } = data;
-
-  useEffect(() => {
-    getDestinationName(id).then((destination) => {
-      setDestinationName(destination);
-    });
-  }, [id]);
-
   return (
     <TableRow>
       <StyledTableCell align="left">{getCarrier()}</StyledTableCell>
       <StyledTableCell align="right">{trainTime}</StyledTableCell>
-      <StyledTableCell align="right">{destinationName}</StyledTableCell>
+      <StyledTableCell align="right">{data.destination}</StyledTableCell>
       <StyledTableCell align="right">{trainNumber}</StyledTableCell>
       <StyledTableCell align="right">{trainTrackNumber}</StyledTableCell>
       <StyledTableCell align="right">{status}</StyledTableCell>
@@ -64,4 +49,7 @@ function BoardEntry(props: { data: IPrediction, isArrival: boolean }) {
   );
 }
 
-export default BoardEntry;
+export default memo(
+  BoardEntry,
+  isEqual
+);
