@@ -38,7 +38,7 @@ function BoardEntry(props: { data: IPrediction, isArrival: boolean }) {
   const trainTime = getTrainTime(data, isArrival);
 
   return (
-    <TableRow>
+    <TableRow className={isArrival ? 'arrival' : 'departure'}>
       <StyledTableCell align="left">{getCarrier()}</StyledTableCell>
       <StyledTableCell align="right">{trainTime}</StyledTableCell>
       <StyledTableCell align="right">{data.destination}</StyledTableCell>

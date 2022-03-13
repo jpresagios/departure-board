@@ -1,96 +1,44 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`Board renders correctly 1`] = `
-<div
-  className="MuiPaper-root MuiTableContainer-root MuiPaper-elevation1 MuiPaper-rounded"
->
-  <table
-    aria-label="Departure/Arrivals Board"
-    className="MuiTable-root makeStyles-table-1"
-    role={null}
-  >
-    <thead
-      className="MuiTableHead-root"
-      role={null}
-    >
-      <tr
-        className="MuiTableRow-root MuiTableRow-head"
-        role={null}
-      >
-        <th
-          aria-sort={null}
-          className="MuiTableCell-root MuiTableCell-head WithStyles(ForwardRef(TableCell))-head-2"
-          scope="col"
-        >
-          <b>
-            Carrier
-          </b>
-        </th>
-        <th
-          aria-sort={null}
-          className="MuiTableCell-root MuiTableCell-head WithStyles(ForwardRef(TableCell))-head-2 MuiTableCell-alignRight"
-          scope="col"
-        >
-          <b>
-            Time
-          </b>
-        </th>
-        <th
-          aria-sort={null}
-          className="MuiTableCell-root MuiTableCell-head WithStyles(ForwardRef(TableCell))-head-2 MuiTableCell-alignRight"
-          scope="col"
-        >
-          <b>
-            Destination
-          </b>
-        </th>
-        <th
-          aria-sort={null}
-          className="MuiTableCell-root MuiTableCell-head WithStyles(ForwardRef(TableCell))-head-2 MuiTableCell-alignRight"
-          scope="col"
-        >
-          <b>
-            Train #
-          </b>
-        </th>
-        <th
-          aria-sort={null}
-          className="MuiTableCell-root MuiTableCell-head WithStyles(ForwardRef(TableCell))-head-2 MuiTableCell-alignRight"
-          scope="col"
-        >
-          <b>
-            Track #
-          </b>
-        </th>
-        <th
-          aria-sort={null}
-          className="MuiTableCell-root MuiTableCell-head WithStyles(ForwardRef(TableCell))-head-2 MuiTableCell-alignRight"
-          scope="col"
-        >
-          <b>
-            Status
-          </b>
-        </th>
+"<div class=\\"MuiPaper-root MuiTableContainer-root MuiPaper-elevation1 MuiPaper-rounded\\">
+  <table class=\\"MuiTable-root makeStyles-table-6\\" aria-label=\\"Departure/Arrivals Board\\">
+    <thead class=\\"MuiTableHead-root\\">
+      <tr class=\\"MuiTableRow-root MuiTableRow-head\\">
+        <th class=\\"MuiTableCell-root MuiTableCell-head WithStyles(ForwardRef(TableCell))-head-2\\" scope=\\"col\\"><b>Carrier</b></th>
+        <th class=\\"MuiTableCell-root MuiTableCell-head WithStyles(ForwardRef(TableCell))-head-2 MuiTableCell-alignRight\\" scope=\\"col\\"><b>Time</b></th>
+        <th class=\\"MuiTableCell-root MuiTableCell-head WithStyles(ForwardRef(TableCell))-head-2 MuiTableCell-alignRight\\" scope=\\"col\\"><b>Destination</b></th>
+        <th class=\\"MuiTableCell-root MuiTableCell-head WithStyles(ForwardRef(TableCell))-head-2 MuiTableCell-alignRight\\" scope=\\"col\\"><b>Train #</b></th>
+        <th class=\\"MuiTableCell-root MuiTableCell-head WithStyles(ForwardRef(TableCell))-head-2 MuiTableCell-alignRight\\" scope=\\"col\\"><b>Track #</b></th>
+        <th class=\\"MuiTableCell-root MuiTableCell-head WithStyles(ForwardRef(TableCell))-head-2 MuiTableCell-alignRight\\" scope=\\"col\\"><b>Status</b></th>
       </tr>
     </thead>
-    <tbody
-      className="MuiTableBody-root"
-      role={null}
-    >
-      <tr
-        className="MuiTableRow-root"
-        role={null}
-      >
-        <td
-          aria-sort={null}
-          className="MuiTableCell-root MuiTableCell-body WithStyles(ForwardRef(TableCell))-body-3"
-        >
-          <h1>
-            Arrivals
-          </h1>
-        </td>
+    <tbody class=\\"MuiTableBody-root\\">
+      <tr class=\\"MuiTableRow-root departure\\">
+        <td class=\\"MuiTableCell-root MuiTableCell-body WithStyles(ForwardRef(TableCell))-body-5 MuiTableCell-alignLeft\\">MTBA</td>
+        <td class=\\"MuiTableCell-root MuiTableCell-body WithStyles(ForwardRef(TableCell))-body-5 MuiTableCell-alignRight\\">01:53 AM</td>
+        <td class=\\"MuiTableCell-root MuiTableCell-body WithStyles(ForwardRef(TableCell))-body-5 MuiTableCell-alignRight\\">South Station</td>
+        <td class=\\"MuiTableCell-root MuiTableCell-body WithStyles(ForwardRef(TableCell))-body-5 MuiTableCell-alignRight\\">G-10042</td>
+        <td class=\\"MuiTableCell-root MuiTableCell-body WithStyles(ForwardRef(TableCell))-body-5 MuiTableCell-alignRight\\">TBD</td>
+        <td class=\\"MuiTableCell-root MuiTableCell-body WithStyles(ForwardRef(TableCell))-body-5 MuiTableCell-alignRight\\">DEPARTURED</td>
+      </tr>
+      <tr class=\\"MuiTableRow-root\\">
+        <td class=\\"MuiTableCell-root MuiTableCell-body WithStyles(ForwardRef(TableCell))-body-7\\"></td>
+        <td class=\\"MuiTableCell-root MuiTableCell-body WithStyles(ForwardRef(TableCell))-body-7\\"></td>
+        <td class=\\"MuiTableCell-root MuiTableCell-body WithStyles(ForwardRef(TableCell))-body-7\\">Trains on way to South Station (1)</td>
+        <td class=\\"MuiTableCell-root MuiTableCell-body WithStyles(ForwardRef(TableCell))-body-7\\"></td>
+        <td class=\\"MuiTableCell-root MuiTableCell-body WithStyles(ForwardRef(TableCell))-body-7\\"></td>
+        <td class=\\"MuiTableCell-root MuiTableCell-body WithStyles(ForwardRef(TableCell))-body-7\\"></td>
+      </tr>
+      <tr class=\\"MuiTableRow-root arrival\\">
+        <td class=\\"MuiTableCell-root MuiTableCell-body WithStyles(ForwardRef(TableCell))-body-5 MuiTableCell-alignLeft\\">MTBA</td>
+        <td class=\\"MuiTableCell-root MuiTableCell-body WithStyles(ForwardRef(TableCell))-body-5 MuiTableCell-alignRight\\">01:53 AM</td>
+        <td class=\\"MuiTableCell-root MuiTableCell-body WithStyles(ForwardRef(TableCell))-body-5 MuiTableCell-alignRight\\">South Station</td>
+        <td class=\\"MuiTableCell-root MuiTableCell-body WithStyles(ForwardRef(TableCell))-body-5 MuiTableCell-alignRight\\">G-10042</td>
+        <td class=\\"MuiTableCell-root MuiTableCell-body WithStyles(ForwardRef(TableCell))-body-5 MuiTableCell-alignRight\\">TBD</td>
+        <td class=\\"MuiTableCell-root MuiTableCell-body WithStyles(ForwardRef(TableCell))-body-5 MuiTableCell-alignRight\\">ALL ABOARD</td>
       </tr>
     </tbody>
   </table>
-</div>
+</div>"
 `;

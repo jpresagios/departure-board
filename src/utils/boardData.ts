@@ -132,10 +132,8 @@ const getTrainsInfo = async (dataPredictions: IPrediction[]): Promise<ITrainsBoa
       const { attributes: { headsign }, id } = data[i];
       tripDataResult.set(id, headsign);
     }
-
     const departuresData = getDepartures(dataPredictions, tripDataResult);
     const arrivalsData = getArrivals(dataPredictions, tripDataResult);
-
     return { departuresData, arrivalsData };
   } catch (err) {
     logger.error('Resolve trains info:', err);

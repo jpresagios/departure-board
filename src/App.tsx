@@ -1,4 +1,5 @@
 import React from 'react';
+import { CssBaseline } from '@material-ui/core';
 import useMBTAStreaming from './hooks/useMBTAStreaming';
 import Board from './components/Board';
 
@@ -6,7 +7,10 @@ function App() {
   const [data] = useMBTAStreaming();
 
   return (
-    <Board data={data} />
+    <>
+      <CssBaseline />
+      <Board data={data} />
+    </>
   );
 }
 

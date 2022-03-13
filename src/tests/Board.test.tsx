@@ -1,17 +1,63 @@
 import React from 'react';
-import { render, screen } from '@testing-library/react';
-import renderer from 'react-test-renderer';
+import ReactDOM from 'react-dom';
+import { act } from 'react-dom/test-utils';
+import axios from 'axios';
+import pretty from 'pretty';
 import Board from '../components/Board';
-import fakePredictions from './fakePredictions';
+import fakePredictions, { trips } from './fakePredictions';
 
-test('Board renders correctly', () => {
-  const tree = renderer.create(<Board data={fakePredictions} />).toJSON();
-  expect(tree).toMatchSnapshot();
+beforeEach(() => {
+  jest.clearAllMocks();
 });
 
-test('Board display props', () => {
+jest.mock('axios');
+
+test('Board renders correctly', async () => {
+  const el = document.createElement('div');
+  (axios.get as jest.Mock).mockImplementation(() => Promise.resolve({ data: { ...trips } }));
+  await act(async () => {
+    ReactDOM.render(<Board data={fakePredictions} />, el);
+  });
+
+  expect(pretty(el.innerHTML)).toMatchSnapshot();
+});
+
+test('Board display props', async () => {
   const prediction = fakePredictions[0];
-  render(<Board data={fakePredictions} />);
-  const predictionItem = screen.getByText(prediction.attributes.status!);
-  expect(predictionItem).toBeInTheDocument();
+  // eslint-disable-next-line max-len
+  (axios.get as jest.Mock).mockImplementation(() => Promise.resolve({ data: { ...trips } }));
+
+  const el = document.createElement('div');
+  await act(async () => {
+    ReactDOM.render(<Board data={fakePredictions} />, el);
+  });
+  expect(el.innerHTML).toContain(prediction.attributes.status!);
+});
+
+test('Entry shpow up in departure section', async () => {
+  // eslint-disable-next-line max-len
+  (axios.get as jest.Mock).mockImplementation(() => Promise.resolve({ data: { ...trips } }));
+
+  const el = document.createElement('div');
+  await act(async () => {
+    ReactDOM.render(<Board data={fakePredictions} />, el);
+  });
+
+  const departuresElements = el.getElementsByClassName('MuiTableRow-root departure');
+  const entryDeparture = fakePredictions.filter((pred) => pred.attributes.stop_sequence === 1)[0];
+  expect(departuresElements[0].innerHTML).toContain(entryDeparture.attributes.status);
+});
+
+test('Entry shpow up in arrival section', async () => {
+  // eslint-disable-next-line max-len
+  (axios.get as jest.Mock).mockImplementation(() => Promise.resolve({ data: { ...trips } }));
+
+  const el = document.createElement('div');
+  await act(async () => {
+    ReactDOM.render(<Board data={fakePredictions} />, el);
+  });
+
+  const departuresElements = el.getElementsByClassName('MuiTableRow-root arrival');
+  const entryArrival = fakePredictions.filter((pred) => pred.attributes.stop_sequence > 1)[0];
+  expect(departuresElements[0].innerHTML).toContain(entryArrival.attributes.status);
 });

@@ -42,6 +42,7 @@ function Board(props: { data: IPrediction[] }) {
   const { data } = props;
 
   useEffect(() => {
+    // eslint-disable-next-line @typescript-eslint/no-unused-vars
     getTrainsInfo(data).then((res) => {
       const { departuresData, arrivalsData } = res;
       setDepartures(departuresData);
