@@ -7,8 +7,11 @@ import TableContainer from '@material-ui/core/TableContainer';
 import TableHead from '@material-ui/core/TableHead';
 import TableRow from '@material-ui/core/TableRow';
 import Paper from '@material-ui/core/Paper';
+import * as logger from 'loglevel';
+import { v4 as uuidv4 } from 'uuid';
 import { IPrediction } from '../dataSource/IPredition';
 import BoardEntry from './BoardEntry';
+import { getTrainsInfo } from '../utils/boardData';
 
 export const StyledTableCell = withStyles((theme) => ({
   head: {
@@ -22,33 +25,30 @@ export const StyledTableCell = withStyles((theme) => ({
   }
 }))(TableCell);
 
+export const StyledBlackTableCell = withStyles({
+  body: {
+    border: 'none',
+    textTransform: 'uppercase',
+    fontWeight: 'bold',
+    fontSize: 20,
+    color: 'white',
+    backgroundColor: '#121312'
+  },
+})(TableCell);
+
 function Board(props: { data: IPrediction[] }) {
   const [departures, setDepartures] = useState([] as IPrediction[]);
   const [arrivals, setArrivals] = useState([] as IPrediction[]);
   const { data } = props;
 
   useEffect(() => {
-    const departuresFilter = data.filter(
-      (pred) => pred.attributes.departure_time !== null
-    );
-
-    const sortedDepartures = departuresFilter.sort(
-      (a: IPrediction, b: IPrediction) => new Date(a.attributes.departure_time!).getTime()
-        - new Date(b.attributes.departure_time!).getTime()
-    );
-
-    setDepartures(sortedDepartures);
-
-    const arrivasFilter = data.filter(
-      (pred) => pred.attributes.arrival_time !== null
-    );
-
-    const sortedArrivals = arrivasFilter.sort(
-      (a: IPrediction, b: IPrediction) => new Date(a.attributes.arrival_time!).getTime()
-        - new Date(b.attributes.arrival_time!).getTime()
-    );
-
-    setArrivals(sortedArrivals);
+    getTrainsInfo(data).then((res) => {
+      const { departuresData, arrivalsData } = res;
+      setDepartures(departuresData);
+      setArrivals(arrivalsData);
+    }).catch((err) => {
+      logger.error('Integration trains data:', err);
+    });
   }, [data]);
 
   const useStyles = makeStyles({
@@ -86,16 +86,26 @@ function Board(props: { data: IPrediction[] }) {
         </TableHead>
         <TableBody>
           {departures.map((departure: IPrediction) => (
-            <BoardEntry key={departure.id} data={departure} isArrival={false} />
+            <BoardEntry key={uuidv4()} data={departure} isArrival={false} />
           ))}
 
-          <TableRow>
-            <StyledTableCell>
-              <h1>Arrivals</h1>
-            </StyledTableCell>
-          </TableRow>
+          {arrivals.length > 0 && (
+            <TableRow>
+              <StyledBlackTableCell />
+              <StyledBlackTableCell />
+              <StyledBlackTableCell>
+                Trains on way to South Station
+                (
+                {arrivals.length}
+                )
+              </StyledBlackTableCell>
+              <StyledBlackTableCell />
+              <StyledBlackTableCell />
+              <StyledBlackTableCell />
+            </TableRow>
+          )}
           {arrivals.map((arrival: IPrediction) => (
-            <BoardEntry key={arrival.id} data={arrival} isArrival />
+            <BoardEntry key={uuidv4()} data={arrival} isArrival />
           ))}
         </TableBody>
       </Table>
